@@ -9,12 +9,13 @@ for ($i = ord('A'); $i <= ord('Z'); $i++) {
 }
 $litere[] = 'etc';
 
-$h = fopen('php://stdout', 'w');
+$h = fopen('php://output', 'w');
 fputcsv($h, ['nrCrt', 'Denumire agent economic', 'cod unic de inregistrare']);
 
 $nrcrt = 1;
 foreach ($litere as $litera) {
     foreach (parseHtml(file_get_contents(makeUrl($litera))) as $item) {
+
         array_unshift($item, $nrcrt++);
         fputcsv($h, $item);
     }
